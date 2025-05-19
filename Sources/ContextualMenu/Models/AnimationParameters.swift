@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public struct AnimationParameters {
+@objc public class AnimationParameters : NSObject {
     public let duration: TimeInterval
     public let damping: CGFloat
     public let initialSpringVelocity: CGFloat

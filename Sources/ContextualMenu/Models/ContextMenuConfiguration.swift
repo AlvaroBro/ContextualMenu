@@ -8,14 +8,14 @@
 import Foundation
 import UIKit
 
-public struct ContextMenuConfiguration {
+@objc public class ContextMenuConfiguration : NSObject {
     /// AccessoryView to display on top of preview.
     /// If your view conforms to `ContextMenuAnimatable`, then
     /// provided animations will be used to show/hide view
     weak var accessoryView: UIView?
     let menu: Menu
 
-    public init(accessoryView: UIView? = nil, menu: Menu) {
+    @objc public init(accessoryView: UIView? = nil, menu: Menu) {
         self.accessoryView = accessoryView
         self.menu = menu
     }
@@ -27,7 +27,7 @@ public struct ContextMenuConfiguration {
     public var uiContextMenuConfiguration: UIContextMenuConfiguration {
         return .init(
             actionProvider: { _ -> UIMenu? in
-                return menu.uiMenu
+                return self.menu.uiMenu
             }
         )
     }

@@ -8,10 +8,10 @@
 import Foundation
 import UIKit
 
-public struct Menu {
+@objc public class Menu : NSObject {
     let children: [MenuElement]
 
-    public init(children: [MenuElement]) {
+    @objc public init(children: [MenuElement]) {
         self.children = children
     }
 

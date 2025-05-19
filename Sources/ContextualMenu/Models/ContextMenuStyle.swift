@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public struct ContextMenuStyle {
+@objc public class ContextMenuStyle : NSObject {
     public let windowLevel: UIWindow.Level
     public let backgroundColor: UIColor
     public let backgroundBlurStyle: UIBlurEffect.Style
@@ -18,11 +18,11 @@ public struct ContextMenuStyle {
     public let disapparition: AnimationParameters
 
     public let preview: Preview
-    public let menu: MenuView.Style
+    public let menu: MenuView.Style_
 
-    public static let `default` = ContextMenuStyle()
+    @objc public static let `default` = ContextMenuStyle()
 
-    public init(
+    @objc public init(
         windowLevel: UIWindow.Level = .statusBar - 1,
         backgroundColor: UIColor = .clear,
         backgroundBlurStyle: UIBlurEffect.Style = .systemUltraThinMaterialDark,
@@ -30,7 +30,7 @@ public struct ContextMenuStyle {
         apparition: AnimationParameters = AnimationParameters(),
         disapparition: AnimationParameters = AnimationParameters(),
         preview: Preview = Preview(),
-        menu: MenuView.Style = MenuView.Style()
+        menu: MenuView.Style_ = MenuView.Style_()
     ) {
         self.windowLevel = windowLevel
         self.backgroundColor = backgroundColor
@@ -43,8 +43,8 @@ public struct ContextMenuStyle {
     }
 }
 
-extension ContextMenuStyle {
-    public struct Preview {
+@objc extension ContextMenuStyle {
+    @objc public class Preview : NSObject {
         public var transform: CGAffineTransform
         public var topMargin: CGFloat
         public var bottomMargin: CGFloat

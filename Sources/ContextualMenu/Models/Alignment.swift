@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Alignment {
+enum Alignment_ {
     case leading
     case trailing
 }

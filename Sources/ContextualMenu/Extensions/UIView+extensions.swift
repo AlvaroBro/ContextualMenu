@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 
-extension UIView {
-    public func addInteraction(
+@objc extension UIView {
+    @objc public func addInteraction(
         targetedPreviewProvider: @escaping TargetedPreviewProvider,
         menuConfigurationProvider: @escaping MenuConfigurationProvider,
         style: ContextMenuStyle = .default
@@ -25,7 +25,7 @@ extension UIView {
         ContextMenuInteractor.shared.dismissContextMenu(view: self, completion: completion)
     }
 
-    public static func dismissCurrentContextMenu(completion: (() -> Void)? = nil) {
+    @objc public static func dismissCurrentContextMenu(completion: (() -> Void)? = nil) {
         ContextMenuInteractor.shared.dismissCurrentContextMenu(completion: completion)
     }
 }

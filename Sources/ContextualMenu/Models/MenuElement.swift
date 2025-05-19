@@ -8,13 +8,13 @@
 import Foundation
 import UIKit
 
-public struct MenuElement {
+@objc public class MenuElement : NSObject {
     let title: String
     let image: UIImage?
     let attributes: Attributes
     var handler: ((MenuElement) -> Void)?
 
-    public init(
+    @objc public init(
         title: String,
         image: UIImage? = nil,
         attributes: Attributes = .default,
@@ -32,22 +32,22 @@ public struct MenuElement {
             image: image,
             attributes: attributes.uiAttributes,
             handler: { _ in
-                handler?(self)
+                self.handler?(self)
             }
         )
     }
 }
 
-extension MenuElement {
-    public struct Attributes: OptionSet {
+@objc extension MenuElement {
+    @objc public class Attributes: NSObject, OptionSet {
         public let rawValue: Int8
 
-        public init(rawValue: Int8) {
+        @objc required public init(rawValue: Int8) {
             self.rawValue = rawValue
         }
 
-        public static let `default` = Attributes(rawValue: 1 << 0)
-        public static let destructive = Attributes(rawValue: 1 << 1)
+        @objc public static let `default` = Attributes(rawValue: 1 << 0)
+        @objc public static let destructive = Attributes(rawValue: 1 << 1)
 
         var uiAttributes: UIAction.Attributes {
             var attributes = UIAction.Attributes()

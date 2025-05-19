@@ -182,7 +182,7 @@ class ContextMenuViewController: UIViewController {
         )
     }
     private func setupAccessoryViewIfNeeded(
-        alignment: Alignment
+        alignment: Alignment_
     ) -> FixedAndAnimatableConstraints {
         guard let accessoryView else { return .empty }
 
@@ -202,7 +202,7 @@ class ContextMenuViewController: UIViewController {
         )
     }
     private func setupMenuViewIfNeeded(
-        alignment: Alignment
+        alignment: Alignment_
     ) -> FixedAndAnimatableConstraints {
         guard let menuConfiguration, !menuConfiguration.menu.children.isEmpty else { return .empty }
 
@@ -242,7 +242,7 @@ extension ContextMenuViewController {
 extension ContextMenuViewController {
     /// Returns alignment of menu & accessoryView relative to the preview.
     /// Items are aligned to leading if the preview is centered on the leading part of the screen, otherwise trailing
-    private func menuAndAccessoryViewAlignment() -> Alignment {
+    private func menuAndAccessoryViewAlignment() -> Alignment_ {
         return baseFrameInScreen.midX > view.bounds.midX ? .trailing : .leading
     }
 }

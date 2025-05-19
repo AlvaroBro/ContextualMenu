@@ -22,13 +22,13 @@ public final class MenuView: UIView {
     }()
 
     let menu: Menu
-    let style: Style
+    let style: Style_
 
-    let anchorPointAlignment: Alignment
+    let anchorPointAlignment: Alignment_
 
     weak var delegate: MenuViewDelegate?
 
-    init(menu: Menu, anchorPointAlignment: Alignment, style: Style, delegate: MenuViewDelegate?) {
+    init(menu: Menu, anchorPointAlignment: Alignment_, style: Style_, delegate: MenuViewDelegate?) {
         self.menu = menu
         self.style = style
         self.anchorPointAlignment = anchorPointAlignment
@@ -59,7 +59,7 @@ public final class MenuView: UIView {
         ])
     }
 
-    private static func buildSeparator(style: Style) -> UIView {
+    private static func buildSeparator(style: Style_) -> UIView {
         let res = UIView()
         res.heightAnchor.constraint(equalToConstant: 1).isActive = true
         res.backgroundColor = style.separatorColor

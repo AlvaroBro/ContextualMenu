@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 
-extension MenuView {
-    public struct Style {
+@objc extension MenuView {
+    @objc public class Style_ : NSObject {
         let backgroundColor: UIColor
         let separatorColor: UIColor
         let cornerRadius: CGFloat
@@ -22,8 +22,8 @@ extension MenuView {
         let disapparition: AnimationParameters
 
         public init(
-            backgroundColor: UIColor = .white.withAlphaComponent(0.39),
-            separatorColor: UIColor = .darkGray,
+            backgroundColor: UIColor = .white.withAlphaComponent(0.8),
+            separatorColor: UIColor = .black.withAlphaComponent(0.1),
             cornerRadius: CGFloat = 12,
             element: MenuElementView.Style = MenuElementView.Style(),
             width: CGFloat = 250,
