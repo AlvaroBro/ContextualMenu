@@ -153,11 +153,16 @@ class ContextMenuViewController: UIViewController {
             matches the untransformed position of the rendering
          */
         previewRendering.translatesAutoresizingMaskIntoConstraints = false
-
+        previewRendering.isUserInteractionEnabled = true
+        
+        // Add tap gesture to dismiss on preview tap
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(onTouchUpInsidePreviewRendering))
+        previewRendering.addGestureRecognizer(gesture)
+        
         previewTransformedBoundingView.addSubview(previewRendering)
         view.addSubview(previewTransformedBoundingView)
         targetedPreview?.view.alpha = 0
-
+        
         return FixedAndAnimatableConstraints(
             fixed: [
                 previewRendering.leadingAnchor.constraint(
@@ -249,6 +254,9 @@ extension ContextMenuViewController {
 
 extension ContextMenuViewController {
     @objc private func onTouchUpInsideBackground(_ sender: Any?) {
+        delegate?.dismissContextMenuViewController(self, interaction: self.interaction, uponTapping: nil)
+    }
+    @objc private func onTouchUpInsidePreviewRendering(_ sender: Any?) {
         delegate?.dismissContextMenuViewController(self, interaction: self.interaction, uponTapping: nil)
     }
 }
