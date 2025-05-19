@@ -11,13 +11,10 @@ import UIKit
 extension MenuElementView {
     public struct Style {
         let height: CGFloat
-
         let backgroundColor: UIColor
         let highlightedBackgroundColor: UIColor
-
         let defaultTitleAttributes: [NSAttributedString.Key: Any]
         let destructiveTitleAttributes: [NSAttributedString.Key: Any]
-
         let defaultIconTint: UIColor
         let destructiveIconTint: UIColor
         let iconSize: CGSize
@@ -26,26 +23,33 @@ extension MenuElementView {
             height: CGFloat = 44,
             backgroundColor: UIColor = .clear,
             highlightedBackgroundColor: UIColor = .black.withAlphaComponent(0.2),
-            defaultTitleAttributes: [NSAttributedString.Key : Any] = [
-                .font: UIFont.systemFont(ofSize: 17),
-                .foregroundColor: UIColor.black
-            ],
-            destructiveTitleAttributes: [NSAttributedString.Key : Any] = [
-                .font: UIFont.systemFont(ofSize: 17),
-                .foregroundColor: UIColor.red
-            ],
+            defaultTitleAttributes: [NSAttributedString.Key: Any]? = nil,
+            destructiveTitleAttributes: [NSAttributedString.Key: Any]? = nil,
             defaultIconTint: UIColor = .black,
             destructiveIconTint: UIColor = .red,
-            iconSize: CGSize = .init(width: 22, height: 22)
+            iconSize: CGSize? = nil
         ) {
             self.height = height
             self.backgroundColor = backgroundColor
             self.highlightedBackgroundColor = highlightedBackgroundColor
-            self.defaultTitleAttributes = defaultTitleAttributes
-            self.destructiveTitleAttributes = destructiveTitleAttributes
             self.defaultIconTint = defaultIconTint
             self.destructiveIconTint = destructiveIconTint
-            self.iconSize = iconSize
+            
+            // Use Dynamic Type for text
+            let preferredFont = UIFont.preferredFont(forTextStyle: .body)
+            let fontSize = preferredFont.pointSize
+            self.defaultTitleAttributes = defaultTitleAttributes ?? [
+                .font: UIFont.systemFont(ofSize: fontSize),
+                .foregroundColor: UIColor.black
+            ]
+            self.destructiveTitleAttributes = destructiveTitleAttributes ?? [
+                .font: UIFont.systemFont(ofSize: fontSize),
+                .foregroundColor: UIColor.red
+            ]
+            
+            // Scale icon size based on font size
+            let iconDimension = fontSize * 1.3 // Proportional to font size
+            self.iconSize = iconSize ?? CGSize(width: iconDimension, height: iconDimension)
         }
     }
 
@@ -55,8 +59,7 @@ extension MenuElementView {
     ) -> [NSAttributedString.Key: Any] {
         switch attributes {
         case .destructive: return style.destructiveTitleAttributes
-        default:
-            return style.defaultTitleAttributes
+        default: return style.defaultTitleAttributes
         }
     }
 
@@ -66,8 +69,7 @@ extension MenuElementView {
     ) -> UIColor {
         switch attributes {
         case .destructive: return style.destructiveIconTint
-        default:
-            return style.defaultIconTint
+        default: return style.defaultIconTint
         }
     }
 }
