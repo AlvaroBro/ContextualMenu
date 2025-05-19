@@ -72,7 +72,9 @@ public final class MenuView: UIView {
 }
 
 extension MenuView: MenuElementViewDelegate {
-    func menuElementViewTapped(menuElementView: MenuElementView) {
-        delegate?.dismissMenuView(menuView: self, uponTapping: menuElementView.element)
+    func menuElementViewTapped(menuElementView: MenuElementView, controlEvent: UIControl.Event) {
+        if controlEvent == .touchUpInside {
+            delegate?.dismissMenuView(menuView: self, uponTapping: menuElementView.element)
+        }
     }
 }

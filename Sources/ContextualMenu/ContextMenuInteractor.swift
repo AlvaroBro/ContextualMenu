@@ -77,7 +77,7 @@ class ContextMenuInteractor {
         window.windowScene = viewOriginalWindow?.windowScene
         window.rootViewController = contextMenuController
 
-        UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+        UIImpactFeedbackGenerator(style: .medium ).impactOccurred()
         window.makeKeyAndVisible()
 
         contextMenuController.appearAnimation()

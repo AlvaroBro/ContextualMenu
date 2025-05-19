@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol MenuElementViewDelegate: AnyObject {
-    func menuElementViewTapped(menuElementView: MenuElementView)
+    func menuElementViewTapped(menuElementView: MenuElementView, controlEvent: UIControl.Event)
 }
 
 public final class MenuElementView: UIView {
@@ -38,6 +38,7 @@ public final class MenuElementView: UIView {
         let b = UIButton()
         b.translatesAutoresizingMaskIntoConstraints = false
         b.addTarget(self, action: #selector(onButtonTouchedUpInside), for: .touchUpInside)
+        b.addTarget(self, action: #selector(onButtonTouchedDownInside), for: .touchDown)
         return b
     }()
 
@@ -79,6 +80,10 @@ public final class MenuElementView: UIView {
     }
 
     @objc func onButtonTouchedUpInside(_ sender: Any?) {
-        delegate?.menuElementViewTapped(menuElementView: self)
+        delegate?.menuElementViewTapped(menuElementView: self, controlEvent: .touchUpInside)
+    }
+    
+    @objc func onButtonTouchedDownInside(_ sender: Any?) {
+        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
     }
 }
