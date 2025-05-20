@@ -52,7 +52,7 @@ import UIKit
         public var shadow: ShadowParameters
 
         public init(
-            transform: CGAffineTransform = .init(scaleX: 1.2, y: 1.2),
+            transform: CGAffineTransform = .init(scaleX: 1.0, y: 1.0),
             topMargin: CGFloat = 8,
             bottomMargin: CGFloat = 8,
             shadow: ShadowParameters = .init()
