@@ -21,6 +21,9 @@ import UIKit
             style: style
         )
     }
+    @objc public func removeInteraction() {
+        ContextMenuInteractor.shared.removeInteraction(from: self)
+    }
     public func dismissContextMenu(completion: (() -> Void)? = nil) {
         ContextMenuInteractor.shared.dismissContextMenu(view: self, completion: completion)
     }
